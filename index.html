@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Julia set</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  
+  <script src="p5.min.js"></script>
+  <script src="p5.dom.js"></script>
+  <script src="sketch.js"></script>
+  </head>
+
+  <body style="text-align:center;background-color:#111111;color:#b3b3b3">
+      <div class="page" id="file">
+        <header class="bp-header cf">
+		
+		<div id="mySidenav" class="sidenav">
+		
+          <h1 class="bp-header__title">Les ensembles de Julia</h1>
+			
+			<p style="font-size: 120%">
+			Zoom : <strong>molette</strong><br>
+			Se déplacer : <strong>[Z] [Q] [S] [D]</strong><br>
+			Pause (animation) : <strong>Clic gauche</strong><br>
+			Cliquez n'importe où pour avoir l'ensemble de Julia correspondant à la valeur de c
+			</p>
+			
+			<hr>
+			
+			<p>
+				<label style="font-size: 100%"><input type="checkbox" onchange="showCursor = !showCursor;">
+				Afficher la position de c</label>
+				<label style="font-size: 100%"><input type="checkbox" onchange="drawGrid = !drawGrid">
+				Afficher le repère</label>
+			</p>
+			<p>
+				Sélection manuelle : 
+				<input class="button button5" type="button" value="A la souris" onclick="changeMode(1)">
+				<input id="myBtn" class="button button5" type="button" value="Au clavier">
+				<input class="button button5" type="button" value="Aléatoire" onclick="randomize()">
+				<br>
+				Animations : 
+				<input class="button button5" type="button" value="Animation 1" onclick="changeMode(2)">
+				<input class="button button5" type="button" value="Animation 2 (bruit de Perlin)" onclick="changeMode(5)">
+			</p>
+			
+			<hr>
+			
+			<input class="button button5" type="button" value="Ensemble de Mandelbrot" onclick="changeMode(3)">
+			<input class="button button5" type="button" value="Position initiale" onclick="initPos();">
+			<!--
+			<label><input type="checkbox" onchange="colore[0] = !colore[0];" checked>Rouge</label>
+			<label><input type="checkbox" onchange="colore[1] = !colore[1];">Vert</label>
+			<label><input type="checkbox" onchange="colore[2] = !colore[2];" checked>Bleu</label>
+			-->
+			<br><hr>
+			
+			<p style="text-align: right; font-size: 105%; margin-right: 20%">Nombre d'itérations max : <input id="max" type="text">
+			<label><input type="checkbox" onchange="autoIte = !autoIte" checked> Automatique</label>
+			<br><br>Sensibilité de déplacement et de zoom : <input id="zoomSens" type="text">
+			<br><br>Luminosité : <input id="lumi" type="text"></p>
+            
+	<div id="myModal" class="modal">
+	  <div class="modal-content">
+		<span class="close"></span>
+		<p>c = <input id="a" type="text"> + <input id="b" type="text"> * i<p>
+	  </div>
+	</div>
+		
+          
+  </div>
+        </header>
+      </div> 
+    <script>
+// Modal
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+btn.onclick = function() {
+  changeMode(4);
+  modal.style.display = "block";
+}
+span.onclick = function() {
+  modal.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+   </script>
+    
+  </body>
+</html>
